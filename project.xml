@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<meta title="dot-hop" package="com.example.app" version="1.0.0" company="" />
+	<meta title="dot-hop" package="com.dothop" version="1.0.0" company="" />
 
  	<app file="Main" main="Main" path="bin" />
 
