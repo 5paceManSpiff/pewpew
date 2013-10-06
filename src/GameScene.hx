@@ -10,6 +10,7 @@ class GameScene extends Scene {
   }
 
   public override function begin() {
+    add(new Dot(HXP.halfWidth, HXP.halfHeight));
   }
 
   public override function update() {
