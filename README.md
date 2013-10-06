@@ -1,4 +1,4 @@
-dot-hop
+PewPew
 =======
 
-Think musical chairs for touch devices.
+A work in progress "dual thumb" mobile shooter developed in HaxePunk under the MIT license.
