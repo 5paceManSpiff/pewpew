@@ -1,7 +1,13 @@
 <project name="PewPew" basedir="." default="main">
+
+  <property name="src.dir"          value="src"/>
+  <property name="build.dir"        value="bin"/>
+  <property name="android.dir"      value="${build.dir}/android"/>
+  <property name="androidbin.dir"   value="${android.dir}/bin/bin"/>
+  <property name="apk"              value="${androidbin.dir}/Main-debug.apk"/>
   
   <target name="clean">
-    <delete dir="bin"/>
+    <delete dir="${build.dir}"/>
   </target>
 
   <target name="compile">
@@ -17,12 +23,20 @@
     <exec executable="adb">
       <arg value="install"/>
       <arg value="-r"/>
-      <arg value="./bin/android/bin/bin/Main-debug.apk"/>
+      <arg value="${apk}"/>
+    </exec>
+  </target>
+
+  <target name="run">
+    <exec executable="adb">
+      <arg line="shell am start"/>
+      <arg line="-a android.intent.action.MAIN"/>
+      <arg line="-n com.pewpew/.MainActivity"/>
     </exec>
   </target>
 
   <target name="clean-build" depends="clean, compile"/>
 
-  <target name="main" depends="compile,upload"/>
+  <target name="main" depends="compile,upload,run"/>
 
 </project>
