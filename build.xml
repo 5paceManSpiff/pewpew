@@ -1,0 +1,28 @@
+<project name="PewPew" basedir="." default="main">
+  
+  <target name="clean">
+    <delete dir="bin"/>
+  </target>
+
+  <target name="compile">
+    <exec executable="openfl">
+      <arg value="build"/>
+      <arg value="-DHXCPP_M64"/>
+      <arg value="-Ddebug"/>
+      <arg value="android"/>
+    </exec>
+  </target>
+
+  <target name="upload">
+    <exec executable="adb">
+      <arg value="install"/>
+      <arg value="-r"/>
+      <arg value="./bin/android/bin/bin/Main-debug.apk"/>
+    </exec>
+  </target>
+
+  <target name="clean-build" depends="clean, compile"/>
+
+  <target name="main" depends="compile,upload"/>
+
+</project>
