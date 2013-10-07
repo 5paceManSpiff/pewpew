@@ -14,10 +14,10 @@ class Player extends Entity {
   private var speed:Int;
 
   public function new(_x:Float, _y:Float) {
-    super(_x - 25, _y - 25);
-
     graphic = sprite = new Image('graphics/player.png');
     setHitboxTo(sprite);
+
+    super(_x - sprite.width/2, _y - sprite.height/2);
 
     goTo = new Point();
     speed = 5;
@@ -26,7 +26,6 @@ class Player extends Entity {
   public override function update() {
     var touch0:Touch = Input.touches[0];
     var touch1:Touch = Input.touches[1];
-    var current:Point = new Point(x, y);
 
     if(touch0 != null && touch1 != null) {
       var xdist:Float = Math.abs(touch0.x - touch1.x);
@@ -38,8 +37,8 @@ class Player extends Entity {
       goTo.x -= sprite.width/2;
       goTo.y -= sprite.height/2;
 
-      x = goTo.subtract(current).x/speed + x;
-      y = goTo.subtract(current).y/speed + y;
+      x += (goTo.x - x)/speed;
+      y += (goTo.y - y)/speed;
     }
 
     super.update();
