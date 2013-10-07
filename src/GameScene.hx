@@ -15,7 +15,7 @@ class GameScene extends Scene {
   }
 
   public override function begin() {
-
+    add(new Player(HXP.halfWidth, HXP.halfHeight));
   }
 
   public override function update() {
@@ -33,6 +33,8 @@ class GameScene extends Scene {
       }
     }
 #end
+
+
     super.update();
   }
 
