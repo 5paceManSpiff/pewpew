@@ -1,5 +1,6 @@
 package game;
 
+import Std;
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
@@ -15,6 +16,7 @@ class Player extends Entity {
 
   public function new(_x:Float, _y:Float) {
     graphic = sprite = new Image('graphics/player.png'); //initialized graphic and sprite with .png
+    sprite.centerOrigin();
     setHitboxTo(sprite); //sets hitbox to .png
 
     super(_x - sprite.width/2, _y - sprite.height/2); //displays entity at _x and _y
@@ -44,8 +46,17 @@ class Player extends Entity {
       //moves to goTo
       x += (goTo.x - x)/speed;
       y += (goTo.y - y)/speed;
+
+      sprite.angle = Math.atan(ydist/xdist) * 57.2957795;
+      
+      if(touch0.y <= touch1.y){
+        sprite.angle *= -1;
+      }
     }
 
+#if debug
+      HXP.console.log([sprite.angle]);
+#end
     super.update();
   }
 }
